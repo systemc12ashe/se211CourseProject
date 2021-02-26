@@ -1,36 +1,41 @@
 class csvSetter:
+    def __init__(self, csvFile):
+        self.csvFile = csvFile
 
     def change_column(self, index, values = None):
-        height = len(self.columns[index])
+        height = len(self.csvFile.columns[index])
         column = []
         if values == None:
             i = 0
             while i < height:
-                column.append('')
+                column.append(None)
                 i+=1
         else:
             column = values
-        self.columns[index] = column
-        print(self.columns[index])
+        self.csvFile.columns[index] = column
+        print('Column {} is now {}'.format(index, self.csvFile.columns[index]))
 
     def change_row(self, index, values = None):
-        width = len(self.rows[index])
+        width = len(self.csvFile.rows[index])
         row = []
         if values == None:
             i = 0
             while i < width:
-                row.append('')
+                row.append(None)
                 i+=1
         else:
             row = values
-        self.rows[index] = row
-        print(self.rows[index])
+        self.csvFile.rows[index] = row
+        print('Row {} is now {}'.format(index, self.csvFile.rows[index]))
 
     def change_cell(self, x, y, value = None):
-        row = self.rows[x]
+        row = self.csvFile.rows[x]
         if value == None:
             row[y] = None
         else:
             row[y] = value
-        self.rows[x] = row
-        print(self.rows[x])
+        self.csvFile.rows[x] = row
+        print('Cell ({},{}) is now {}'.format(x, y, self.csvFile.rows[x]))
+
+    def insert_row(self):
+        pass
