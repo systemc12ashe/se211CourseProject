@@ -2,7 +2,7 @@
 Author: Cassidy Ashe
 Course: SE 211
 
-Technologies used:
+Technologies used for CSVlibrary:
  - Python 3
      - csv module (built-in)
 
