@@ -17,14 +17,15 @@ def print_commands():
     print('DCEL - Delete Cell')
     print('IROW - Insert Row')
     print('ICOL - Insert Column')
-    print('SAVE - Writes working table to file')
     print('EXIT - Exit program')
 
 
 if __name__ == "__main__":
     print('Input File Name')
     fileName = str(input())
-    file = CSVFile.csvFile(fileName)
+    print('Input File Delimiter')
+    delimiter = str(input())
+    file = CSVFile.csvFile(fileName, delimiter)
     validator = validator.validator()
     interpreter = interpreter.interpreter(file)
     loop = True
@@ -39,6 +40,5 @@ if __name__ == "__main__":
                 print('Exiting CSVlibrary')
                 loop = False
             interpreter.interpret(command)
+            file.save_changes()
         print()
-
-                

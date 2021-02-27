@@ -32,14 +32,17 @@ class validator:
         else:
             self.invalid_command()
 
-    def validate_column(self):
-        pass
+    def validate_column(self, data, height):
+        if len(data) == height:
+            return True
+        else:
+            return False
 
-    def validate_row(self):
-        pass
-
-    def validate_cell(self):
-        pass
+    def validate_row(self, data, width):
+        if len(data) == width:
+            return True
+        else:
+            return False
 
     def invalid_command(self):
         print('Not a valid command.\n')

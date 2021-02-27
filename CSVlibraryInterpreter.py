@@ -1,11 +1,13 @@
 import CSVGetter as getter
 import CSVSetter as setter
+import CSVlibraryValidator as validator
 
 class interpreter:
     def __init__(self, file):
         self.file = file
         self.getter = getter.csvGetter(file)
         self.setter = setter.csvSetter(file)
+        self.validator = validator.validator()
 
     def interpret(self, command):
         if command == 'rtab':
@@ -29,13 +31,33 @@ class interpreter:
             self.getter.return_cell(row, column)
 
         elif command == 'crow':
-            return True
+            print('Enter row index')
+            index = int(input())
+            print('Enter data seperated by commas')
+            data = input().split(',')
+            if self.validator.validate_row(data,  len(self.file.rows[0])):
+                self.setter.change_row(index, data)
+            else:
+                print('Invalid Data')
 
         elif command == 'ccol':
-            return True
+            print('Enter column index')
+            index = int(input())
+            print('Enter data seperated by commas')
+            data = input().split(',')
+            if self.validator.validate_column(data, len(self.file.columns[0])):
+                self.setter.change_column(index, data)
+            else:
+                print('Invalid Data')
             
         elif command == 'ccel':
-            return True
+            print('Enter row index')
+            row = int(input())
+            print('Enter column index')
+            column = int(input())
+            print('Enter data')
+            data = input()
+            self.setter.change_cell(row, column, data)
 
         elif command == 'drow':
             print('Enter row index')
@@ -55,10 +77,20 @@ class interpreter:
             self.setter.change_cell(row, column)
 
         elif command == 'irow':
-            return True
+            print('Enter data seperated by commas')
+            new_row = input().split(',')
+            if self.validator.validate_row(new_row,  len(self.file.rows[0])):
+                self.setter.insert_row(new_row)
+            else:
+                print('Invalid Data')
 
         elif command == 'icol':
-            return True
+            print('Enter data seperated by commas')
+            new_column = input().split(',')
+            if self.validator.validate_column(new_column, len(self.file.columns[0])):
+                self.setter.insert_column(new_column)
+            else:
+                print('Invalid Data')
 
         else:
             #exit command

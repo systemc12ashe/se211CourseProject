@@ -13,6 +13,12 @@ class csvSetter:
         else:
             column = values
         self.csvFile.columns[index] = column
+        i = 0
+        while i < len(self.csvFile.rows):
+            row = self.csvFile.rows[i]
+            row[index] = column[i]
+            self.csvFile.rows[i] = row
+            i+=1
         print('Column {} is now {}'.format(index, self.csvFile.columns[index]))
 
     def change_row(self, index, values = None):
@@ -35,7 +41,16 @@ class csvSetter:
         else:
             row[y] = value
         self.csvFile.rows[x] = row
-        print('Cell ({},{}) is now {}'.format(x, y, self.csvFile.rows[x]))
+        print('Cell ({},{}) is now {}'.format(x, y, row[y]))
 
-    def insert_row(self):
-        pass
+    def insert_row(self, data):
+        self.csvFile.rows.append(data)
+        print('{} was added to rows'.format(data))
+
+    def insert_column(self, data):
+        self.csvFile.columns.append(data)
+        i = 0
+        while i < len(data):
+            self.csvFile.rows[i].append(data[i])
+            i+=1
+        print('{} was added to columns'.format(data))
