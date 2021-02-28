@@ -41,5 +41,3 @@ class csvFile:
             for i in self.rows:
                 csvFile_writer.writerow(i)
     
-if __name__ == '__main__':
-    file = csvFile('example.csv', '/')

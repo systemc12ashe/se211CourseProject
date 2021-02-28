@@ -20,7 +20,6 @@ def print_commands():
     print('EXIT - Exit program')
 
 
-if __name__ == "__main__":
     print('Input File Name')
     fileName = str(input())
     print('Input File Delimiter')

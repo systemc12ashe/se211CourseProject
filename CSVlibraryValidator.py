@@ -1,7 +1,4 @@
 class validator:
-    def validate_fileName(self):
-        pass
-
     def validate_command(self,command):
         if command == 'rtab':
             return True
