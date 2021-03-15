@@ -1,3 +1,4 @@
+import csv
 class csvSetter:
     def __init__(self, csvFile):
         self.csvFile = csvFile
@@ -43,14 +44,25 @@ class csvSetter:
         self.csvFile.rows[x] = row
         print('Cell ({},{}) is now {}'.format(x, y, row[y]))
 
-    def insert_row(self, data):
+    def insert_row(self, data, header_row):
         self.csvFile.rows.append(data)
-        print('{} was added to rows'.format(data))
+        with open(self.csvFile.fileName, 'w') as csvfile:  
+            csvwriter = csv.writer(csvfile, lineterminator = '\n')  
+            list = self.csvFile.rows
+            list.insert(0, header_row)
+            csvwriter.writerows(list) 
 
-    def insert_column(self, data):
+    def insert_column(self, data, header_row):
         self.csvFile.columns.append(data)
         i = 0
         while i < len(data):
             self.csvFile.rows[i].append(data[i])
             i+=1
-        print('{} was added to columns'.format(data))
+        with open(self.csvFile.fileName, 'w') as csvfile:  
+            # creating a csv writer object  
+            csvwriter = csv.writer(csvfile, lineterminator = '\n')  
+            
+            list = self.csvFile.rows
+            list.insert(0, header_row)
+            # writing the data rows  
+            csvwriter.writerows(list) 

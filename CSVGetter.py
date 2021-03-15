@@ -3,16 +3,18 @@ class csvGetter:
         self.csvFile = csvFile
 
     def return_table(self):
+        x = []
         for row in self.csvFile.rows:
-            print(row)
+            x.append(row)
+        return x
 
     def return_column(self, index):
-        print(self.csvFile.columns[index])
+        return self.csvFile.columns[index]
 
     def return_row(self, index):
-        print(self.csvFile.rows[index])
+        return self.csvFile.rows[index]
 
     def return_cell(self, x, y):
         row = self.csvFile.rows[x]
         cell = row[y]
-        print(cell)
+        return cell
