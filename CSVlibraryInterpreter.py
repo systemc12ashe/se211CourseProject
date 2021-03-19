@@ -38,7 +38,7 @@ class interpreter:
             # print('Enter row index')
             index = int(command[1])
             # print('Enter data seperated by commas')
-            data = command[2:].split(',')
+            data = command[2:]
             if self.validator.validate_row(data,  len(self.file.rows[0])):
                 self.setter.change_row(index, data)
             else:
@@ -48,7 +48,8 @@ class interpreter:
             # print('Enter column index')
             index = int(command[1])
             # print('Enter data seperated by commas')
-            data = command[2:].split(',')
+            data = command[3:]
+            self.header_list[index] = command[2]
             if self.validator.validate_column(data, len(self.file.columns[0])):
                 self.setter.change_column(index, data)
             else:
@@ -84,7 +85,7 @@ class interpreter:
             # print('Enter data seperated by commas')
             new_row = command[1:]
             if self.validator.validate_row(new_row,  len(self.file.rows[0])):
-                self.setter.insert_row(new_row, self.header_list)
+                self.setter.insert_row(new_row)
                 print(self.file.rows)
             else:
                 print('Invalid Data')
@@ -93,9 +94,11 @@ class interpreter:
             # print('Enter data seperated by commas')
             new_column = command[2:]
             if self.validator.validate_column(new_column, len(self.file.columns[0])):
-                self.setter.insert_column(new_column, self.header_list)
+                self.setter.insert_column(new_column)
             else:
                 print('Invalid Data')
+        elif command[0] == 'update':
+            self.setter.update_file(self.header_list)
 
         else:
             #exit command
